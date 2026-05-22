@@ -3,184 +3,247 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Task Manager DevOps Dashboard</title>
+  <title>Task Manager</title>
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, sans-serif;
     }
 
-    body {
-      background: linear-gradient(135deg, #0f172a, #1e293b);
-      color: white;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 40px;
+    body{
+      background:#0f172a;
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:30px;
+      color:white;
     }
 
-    .container {
-      width: 100%;
-      max-width: 1100px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 20px;
-      padding: 40px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+    .app{
+      width:100%;
+      max-width:700px;
+      background:#1e293b;
+      border-radius:20px;
+      padding:35px;
+      box-shadow:0 10px 40px rgba(0,0,0,0.4);
     }
 
-    .hero {
-      text-align: center;
-      margin-bottom: 50px;
+    h1{
+      text-align:center;
+      margin-bottom:10px;
+      font-size:2.5rem;
     }
 
-    .hero h1 {
-      font-size: 3rem;
-      margin-bottom: 15px;
+    .subtitle{
+      text-align:center;
+      color:#94a3b8;
+      margin-bottom:30px;
     }
 
-    .hero p {
-      color: #cbd5e1;
-      font-size: 1.1rem;
+    .task-form{
+      display:flex;
+      gap:10px;
+      margin-bottom:30px;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 25px;
+    .task-form input{
+      flex:1;
+      padding:14px;
+      border:none;
+      border-radius:12px;
+      background:#334155;
+      color:white;
+      font-size:1rem;
     }
 
-    .card {
-      background: rgba(255,255,255,0.07);
-      border-radius: 18px;
-      padding: 25px;
-      transition: 0.3s ease;
-      border: 1px solid rgba(255,255,255,0.08);
+    .task-form button{
+      padding:14px 22px;
+      border:none;
+      border-radius:12px;
+      background:#2563eb;
+      color:white;
+      cursor:pointer;
+      font-weight:bold;
+      transition:0.3s;
     }
 
-    .card:hover {
-      transform: translateY(-8px);
-      background: rgba(255,255,255,0.1);
+    .task-form button:hover{
+      background:#1d4ed8;
     }
 
-    .card h2 {
-      margin-bottom: 12px;
-      font-size: 1.3rem;
+    .task-list{
+      display:flex;
+      flex-direction:column;
+      gap:15px;
     }
 
-    .card p {
-      color: #cbd5e1;
-      line-height: 1.5;
+    .task{
+      background:#334155;
+      padding:18px;
+      border-radius:15px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
     }
 
-    .status {
-      margin-top: 12px;
-      display: inline-block;
-      padding: 8px 14px;
-      border-radius: 30px;
-      background: #22c55e;
-      color: white;
-      font-size: 0.9rem;
-      font-weight: bold;
+    .task.completed{
+      opacity:0.6;
+      text-decoration:line-through;
     }
 
-    .footer {
-      margin-top: 50px;
-      text-align: center;
-      color: #94a3b8;
-      font-size: 0.9rem;
+    .task-left{
+      display:flex;
+      align-items:center;
+      gap:15px;
     }
 
-    .btns {
-      margin-top: 40px;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
+    .task-left input{
+      width:20px;
+      height:20px;
     }
 
-    .btn {
-      text-decoration: none;
-      color: white;
-      background: #2563eb;
-      padding: 14px 24px;
-      border-radius: 12px;
-      transition: 0.3s;
-      font-weight: bold;
+    .delete-btn{
+      background:#ef4444;
+      border:none;
+      padding:10px 16px;
+      border-radius:10px;
+      color:white;
+      cursor:pointer;
+      transition:0.3s;
     }
 
-    .btn:hover {
-      background: #1d4ed8;
+    .delete-btn:hover{
+      background:#dc2626;
+    }
+
+    .footer{
+      margin-top:30px;
+      text-align:center;
+      color:#94a3b8;
+      font-size:0.9rem;
     }
 
   </style>
+
 </head>
 
 <body>
 
-  <div class="container">
+  <div class="app">
 
-    <div class="hero">
-      <h1>🚀 Task Manager DevOps Dashboard</h1>
-      <p>CI/CD Pipeline with Jenkins, Docker, Kubernetes, Prometheus & Grafana</p>
+    <h1>📝 Task Manager</h1>
+
+    <p class="subtitle">
+      DevOps CI/CD Project using Jenkins, Docker & Kubernetes
+    </p>
+
+    <div class="task-form">
+      <input type="text" id="taskInput" placeholder="Enter a task...">
+      <button onclick="addTask()">Add Task</button>
     </div>
 
-    <div class="grid">
-
-      <div class="card">
-        <h2>⚙ Jenkins CI/CD</h2>
-        <p>Automated pipeline deployment integrated with GitHub Webhooks.</p>
-        <span class="status">RUNNING</span>
-      </div>
-
-      <div class="card">
-        <h2>🐳 Docker</h2>
-        <p>Containerized Node.js application pushed automatically to DockerHub.</p>
-        <span class="status">ACTIVE</span>
-      </div>
-
-      <div class="card">
-        <h2>☸ Kubernetes</h2>
-        <p>Application deployed on k3s cluster with scaling and health probes.</p>
-        <span class="status">HEALTHY</span>
-      </div>
-
-      <div class="card">
-        <h2>📊 Prometheus</h2>
-        <p>Real-time metrics collection and monitoring for application services.</p>
-        <span class="status">MONITORING</span>
-      </div>
-
-      <div class="card">
-        <h2>📈 Grafana</h2>
-        <p>Interactive dashboards visualizing infrastructure and app metrics.</p>
-        <span class="status">ONLINE</span>
-      </div>
-
-      <div class="card">
-        <h2>🍃 MongoDB</h2>
-        <p>Persistent NoSQL database backend powering the task management API.</p>
-        <span class="status">CONNECTED</span>
-      </div>
-
-    </div>
-
-    <div class="btns">
-      <a class="btn" href="/health">Health Check</a>
-      <a class="btn" href="/metrics">Metrics</a>
-      <a class="btn" href="/api/tasks">Tasks API</a>
-    </div>
+    <div class="task-list" id="taskList"></div>
 
     <div class="footer">
-      <p>Developed for CSC418 – DevOps for Cloud Computing</p>
+      Running on Kubernetes ☸ | Monitored by Prometheus 📊
     </div>
 
   </div>
+
+<script>
+
+const API_URL = '/api/tasks';
+
+async function fetchTasks() {
+
+  const response = await fetch(API_URL);
+  const tasks = await response.json();
+
+  const taskList = document.getElementById('taskList');
+  taskList.innerHTML = '';
+
+  tasks.forEach(task => {
+
+    const div = document.createElement('div');
+    div.className = task.completed ? 'task completed' : 'task';
+
+    div.innerHTML = `
+      <div class="task-left">
+        <input type="checkbox"
+          ${task.completed ? 'checked' : ''}
+          onchange="toggleTask('${task._id}', ${task.completed})">
+        <span>${task.title}</span>
+      </div>
+
+      <button class="delete-btn"
+        onclick="deleteTask('${task._id}')">
+        Delete
+      </button>
+    `;
+
+    taskList.appendChild(div);
+
+  });
+
+}
+
+async function addTask() {
+
+  const input = document.getElementById('taskInput');
+
+  if(input.value.trim() === '') return;
+
+  await fetch(API_URL, {
+    method:'POST',
+    headers:{
+      'Content-Type':'application/json'
+    },
+    body:JSON.stringify({
+      title:input.value,
+      completed:false
+    })
+  });
+
+  input.value = '';
+
+  fetchTasks();
+
+}
+
+async function toggleTask(id, completed) {
+
+  await fetch(`${API_URL}/${id}`, {
+    method:'PUT',
+    headers:{
+      'Content-Type':'application/json'
+    },
+    body:JSON.stringify({
+      completed:!completed
+    })
+  });
+
+  fetchTasks();
+
+}
+
+async function deleteTask(id) {
+
+  await fetch(`${API_URL}/${id}`, {
+    method:'DELETE'
+  });
+
+  fetchTasks();
+
+}
+
+fetchTasks();
+
+</script>
 
 </body>
 </html>
