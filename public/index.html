@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task Manager DevOps Dashboard</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      padding: 40px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      color: #cbd5e1;
+      font-size: 1.1rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.07);
+      border-radius: 18px;
+      padding: 25px;
+      transition: 0.3s ease;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      background: rgba(255,255,255,0.1);
+    }
+
+    .card h2 {
+      margin-bottom: 12px;
+      font-size: 1.3rem;
+    }
+
+    .card p {
+      color: #cbd5e1;
+      line-height: 1.5;
+    }
+
+    .status {
+      margin-top: 12px;
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 30px;
+      background: #22c55e;
+      color: white;
+      font-size: 0.9rem;
+      font-weight: bold;
+    }
+
+    .footer {
+      margin-top: 50px;
+      text-align: center;
+      color: #94a3b8;
+      font-size: 0.9rem;
+    }
+
+    .btns {
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      text-decoration: none;
+      color: white;
+      background: #2563eb;
+      padding: 14px 24px;
+      border-radius: 12px;
+      transition: 0.3s;
+      font-weight: bold;
+    }
+
+    .btn:hover {
+      background: #1d4ed8;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="hero">
+      <h1>🚀 Task Manager DevOps Dashboard</h1>
+      <p>CI/CD Pipeline with Jenkins, Docker, Kubernetes, Prometheus & Grafana</p>
+    </div>
+
+    <div class="grid">
+
+      <div class="card">
+        <h2>⚙ Jenkins CI/CD</h2>
+        <p>Automated pipeline deployment integrated with GitHub Webhooks.</p>
+        <span class="status">RUNNING</span>
+      </div>
+
+      <div class="card">
+        <h2>🐳 Docker</h2>
+        <p>Containerized Node.js application pushed automatically to DockerHub.</p>
+        <span class="status">ACTIVE</span>
+      </div>
+
+      <div class="card">
+        <h2>☸ Kubernetes</h2>
+        <p>Application deployed on k3s cluster with scaling and health probes.</p>
+        <span class="status">HEALTHY</span>
+      </div>
+
+      <div class="card">
+        <h2>📊 Prometheus</h2>
+        <p>Real-time metrics collection and monitoring for application services.</p>
+        <span class="status">MONITORING</span>
+      </div>
+
+      <div class="card">
+        <h2>📈 Grafana</h2>
+        <p>Interactive dashboards visualizing infrastructure and app metrics.</p>
+        <span class="status">ONLINE</span>
+      </div>
+
+      <div class="card">
+        <h2>🍃 MongoDB</h2>
+        <p>Persistent NoSQL database backend powering the task management API.</p>
+        <span class="status">CONNECTED</span>
+      </div>
+
+    </div>
+
+    <div class="btns">
+      <a class="btn" href="/health">Health Check</a>
+      <a class="btn" href="/metrics">Metrics</a>
+      <a class="btn" href="/api/tasks">Tasks API</a>
+    </div>
+
+    <div class="footer">
+      <p>Developed for CSC418 – DevOps for Cloud Computing</p>
+    </div>
+
+  </div>
+
+</body>
+</html>
